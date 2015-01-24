@@ -1,5 +1,5 @@
 {
-  "name": "osm4mapLinks",
+  "name": "osm4maplinks",
   "title": "osm4mapLinks",
   "id": "jid1-0T2TPAoAPgnwmQ",
   "description": "Replaces all Map links (Google, Bing and Yahoo) with a link to OpenStreetMap",
