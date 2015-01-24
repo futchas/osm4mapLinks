@@ -1,0 +1,9 @@
+{
+  "name": "osm4mapLinks",
+  "title": "osm4mapLinks",
+  "id": "jid1-0T2TPAoAPgnwmQ",
+  "description": "Replaces all Map links (Google, Bing and Yahoo) with a link to OpenStreetMap",
+  "author": "Iyad Al-Sahwi",
+  "license": "GPL V2",
+  "version": "0.1"
+}
