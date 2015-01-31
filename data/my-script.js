@@ -1,8 +1,12 @@
 var osmPrefix = "http://www.openstreetmap.org/search?query=";
 
-var gMapsLinks = document.querySelectorAll('a[href*="maps.google.com/maps?"]');
-var gMapsSearchPrefix = "q=";
-replaceMapLinksWithOSM(gMapsLinks, gMapsSearchPrefix);
+var gMapsLinks = document.querySelectorAll('a[href*="maps.google.com/maps?"], \
+					   a[href*="maps.google.com/?"], \
+					   a[href*="google.com/maps/place/"], \
+					   a[href^="/maps/place/"]');
+var gMapsSearchPrefix1 = "q=";
+var gMapsSearchPrefix2 = "/maps/place/";
+replaceMapLinksWithOSM(gMapsLinks, gMapsSearchPrefix1, gMapsSearchPrefix2);
 
 var bingMapsLinks = document.querySelectorAll('a[href*="bing.com/maps/default.aspx?"]');
 var bingSearchPrefix = "where1=";
@@ -15,22 +19,24 @@ self.port.on('checkURL', function(currentURL) {
   replaceMapLinksWithOSM(bingMapsLinks, bingSearchPrefix);
   if (currentURL.indexOf("www.facebook.com") > -1) {
 	//.replace(/\\\//g, "/");
-	var fbBingLinks = document.querySelectorAll('a[onmouseover*="www.bing.com\\\\/maps\\\\/default.aspx?"]');
+	var fbBingLinks = document.querySelectorAll(
+			    'a[onmouseover*="www.bing.com\\\\/maps\\\\/default.aspx?"]');
         fbBingLinks = decodingURIArray(removeMouseListeners(fbBingLinks, bingSearchPrefix));
 	replaceMapLinksWithOSM(fbBingLinks, bingSearchPrefix);
   }
 });
 
 
-function replaceMapLinksWithOSM(mapLinks, searchPrefix){
+function replaceMapLinksWithOSM(mapLinks, searchPrefix1, searchPrefix2){
 	for(var i = 0; i < mapLinks.length; i++) { 
 		var link = mapLinks[i].href;
 		//console.log("Link: " + link);
 
-		var search = link.split(searchPrefix)[1]; //Get url parameters beginning from the search query
+		var search = link.split(searchPrefix1)[1] || link.split(searchPrefix2)[1]; //Get url parameters beginning from the search query
 		if(!search)
 		   continue; //In case query parameter is not available
-		search = search.split('&')[0]; //Get search query only (Remove other params)
+		  
+		search = search.split(/&|\//)[0]; //Get search query only (Remove other params)
 		//console.log("search: " + search);
 
 		//Remove double keywords in the string
