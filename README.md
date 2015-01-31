@@ -10,7 +10,7 @@ Just download the file and drag it into the Firefox window.
 
 ## Test pages
 
-The file [test-links.html](https://github.com/SickBang/osm4mapLinks/blob/master/test-links.html?raw=true "To test osm4mapLinks") contains some example link to test the addon.
+The file [test-links.html](https://github.com/SickBang/osm4mapLinks/blob/master/test-links.html?raw=true "To test osm4mapLinks") contains some example links to test this add-on.
 
 ### Donations
 
